@@ -53,7 +53,7 @@ namespace TestWebApi.Repositories
                 throw new ArgumentNullException("Item");
             }
 
-            int index = _data.FindIndex(x => x.Id == item.Id);
+            var index = _data.FindIndex(x => x.Id == item.Id);
 
             if(index == -1)
             {
