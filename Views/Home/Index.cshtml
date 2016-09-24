@@ -1,0 +1,109 @@
+@{
+    ViewData["Title"] = "RPi WebRole";
+
+}
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" ></script>
+<script>
+    var uri = 'api/data';
+
+    $(document).ready(function(){
+        $.getJSON(uri)
+            .done(function(data){
+                $.each(data, function(key, item){
+                    $('<li>', { text: formatItem(item)}).appendTo($('#data'));
+                });
+            });
+    });
+
+    function formatItem(item){
+        return '[' + item.id + '] ' + item.name + ': ' + item.value;
+    }
+
+    function turnOn(){
+        var DataModel = new Object();
+        DataModel.id = 1;
+        DataModel.name = "Value1";
+        DataModel.value = 1;
+
+        $.ajax({
+                    url: 'http://localhost:5000/api/data/1',
+                    dataType: "json",
+                    type: "PUT",
+                    // contentType: 'application/json; charset=utf-8',
+                    data: DataModel,
+                    // async: true,
+                    // processData: false,
+                    // cache: false,
+                    // success: function (data) {
+                    //     alert(data);
+                    // },
+                    // error: function (xhr) {
+                    //     alert('error');
+                    // }
+                });
+        //alert("Hello");
+    }
+
+    function turnOff(){
+    var DataModel = new Object();
+    DataModel.id = 1;
+    DataModel.name = "Value1";
+    DataModel.value = 0;
+
+    $.ajax({
+                url: 'http://localhost:5000/api/data/1',
+                dataType: "json",
+                type: "PUT",
+                // contentType: 'application/json; charset=utf-8',
+                data: DataModel,
+                // async: true,
+                // processData: false,
+                // cache: false,
+                // success: function (data) {
+                //     alert(data);
+                // },
+                // error: function (xhr) {
+                //     alert('error');
+                // }
+            });
+        //alert("Hello");
+    }
+
+    function postData(){
+        var DataModel = new Object();
+        DataModel.id = 3;
+        DataModel.name = "Value2";
+        DataModel.value = 3;
+
+        $.ajax({
+            url: 'http://localhost:5000/api/data/',
+            dataType: "json",
+            type: "POST",
+            // contentType: 'application/json; charset=utf-8',
+            data: DataModel,
+            // async: true,
+            // processData: false,
+            // cache: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr) {
+                alert('error');
+            } 
+        });
+    }
+    
+</script>
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<div>
+    <h3>Data</h3>
+    <ul id="data"/>
+    <input type="button" value="Turn On" onclick="turnOn()"/>
+    <input type="button" value="Turn Off" onclick="turnOff()"/>
+    <input type="button", value="Post" onclick="postData()"/>
+</div>
