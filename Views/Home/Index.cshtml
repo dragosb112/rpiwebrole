@@ -8,10 +8,37 @@
     var uri = 'api/data';
 
     $(document).ready(function(){
+        var div = document.getElementById('main');
         $.getJSON(uri)
             .done(function(data){
                 $.each(data, function(key, item){
-                    $('<li>', { text: formatItem(item)}).appendTo($('#data'));
+                    $('<li>', { text: formatItem(item), id: 'label_' + item.id}).appendTo($('#data'));  
+                    
+                    var button = document.createElement('button');
+                    var text = document.createTextNode('ON ');
+                    
+                    button.appendChild(text);
+                    button.setAttribute('type', 'button');
+                    //button.setAttribute('onclick', function(){turnOn_item(item, 1);});
+                    button.onclick = function(){
+                        turnOn_item(item, 1);
+                    };
+
+                    label = document.getElementById('label_' + item.id);
+                    label.appendChild(button);
+
+                    var button2 = document.createElement('button');
+                    var text2 = document.createTextNode('OFF ');
+                    
+                    button2.appendChild(text2);
+                    button2.setAttribute('type', 'button');
+                    //button.setAttribute('onclick', function(){turnOn_item(item, 1);});
+                    button2.onclick = function(){
+                        turnOn_item(item, 0);
+                    };
+
+                    //label = document.getElementById('label_' + item.id);
+                    label.appendChild(button2);  
                 });
             });
     });
@@ -20,78 +47,31 @@
         return '[' + item.id + '] ' + item.name + ': ' + item.value;
     }
 
-    function turnOn(){
-        var DataModel = new Object();
-        DataModel.id = 1;
-        DataModel.name = "Value1";
-        DataModel.value = 1;
+    function turnOn_item(item, value){
+            var DataModel = new Object();
+            DataModel.id = item.id;
+            DataModel.name = item.name;
+            DataModel.value = value;
 
-        $.ajax({
-                    url: 'api/data/1',
-                    dataType: "json",
-                    type: "PUT",
-                    // contentType: 'application/json; charset=utf-8',
-                    data: DataModel,
-                    // async: true,
-                    // processData: false,
-                    // cache: false,
-                    // success: function (data) {
-                    //     alert(data);
-                    // },
-                    // error: function (xhr) {
-                    //     alert('error');
-                    // }
-                });
-        //alert("Hello");
-    }
+            $.ajax({
+                        url: 'api/data/' + DataModel.id,
+                        dataType: "json",
+                        type: "PUT",
+                        // contentType: 'application/json; charset=utf-8',
+                        data: DataModel,
+                        // async: true,
+                        // processData: false,
+                        // cache: false,
+                        // success: function (data) {
+                        //     alert(data);
+                        // },
+                        // error: function (xhr) {
+                        //     alert('error');
+                        // }
+                    });
+            //alert("Hello");
 
-    function turnOff(){
-    var DataModel = new Object();
-    DataModel.id = 1;
-    DataModel.name = "Value1";
-    DataModel.value = 0;
-
-    $.ajax({
-                url: 'api/data/1',
-                dataType: "json",
-                type: "PUT",
-                // contentType: 'application/json; charset=utf-8',
-                data: DataModel,
-                // async: true,
-                // processData: false,
-                // cache: false,
-                // success: function (data) {
-                //     alert(data);
-                // },
-                // error: function (xhr) {
-                //     alert('error');
-                // }
-            });
-        //alert("Hello");
-    }
-
-    function postData(){
-        var DataModel = new Object();
-        DataModel.id = 3;
-        DataModel.name = "Value2";
-        DataModel.value = 3;
-
-        $.ajax({
-            url: 'api/data/',
-            dataType: "json",
-            type: "POST",
-            // contentType: 'application/json; charset=utf-8',
-            data: DataModel,
-            // async: true,
-            // processData: false,
-            // cache: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (xhr) {
-                alert('error');
-            } 
-        });
+            location.reload();
     }
     
 </script>
@@ -100,10 +80,7 @@
     <h2>@ViewData["Title"]</h2>
 </div>
 
-<div>
+<div id='main'>
     <h3>Data</h3>
     <ul id="data"/>
-    <input type="button" value="Turn On" onclick="turnOn()"/>
-    <input type="button" value="Turn Off" onclick="turnOff()"/>
-    <input type="button", value="Post" onclick="postData()"/>
 </div>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TestWebApi.Interfaces;
 using TestWebApi.Models;
 
@@ -12,9 +13,15 @@ namespace TestWebApi.Repositories
 
         public DataRepository()
         {
-            _data.Add(new DataModel {Id = 1, Name = "Value1", Value = 1});
-            _data.Add(new DataModel {Id = 2, Name = "Value2", Value = 2});
-            _nextId += 2;
+            _data.Add(new DataModel {Id = 1, Name = "LED0", Value = 0});
+            _data.Add(new DataModel {Id = 2, Name = "LED1", Value = 0});
+            _data.Add(new DataModel {Id = 3, Name = "LED2", Value = 0});
+            _data.Add(new DataModel {Id = 4, Name = "LED3", Value = 0});
+            _data.Add(new DataModel {Id = 5, Name = "LED4", Value = 0});
+            _data.Add(new DataModel {Id = 6, Name = "LED5", Value = 0});
+            _data.Add(new DataModel {Id = 7, Name = "LED6", Value = 0});
+            _data.Add(new DataModel {Id = 8, Name = "LED7", Value = 0});
+            _nextId += _data.Count;
         }
 
         public DataModel Add(DataModel item)
@@ -28,7 +35,6 @@ namespace TestWebApi.Repositories
             _data.Add(item);
 
             return item;
-
         }
 
         public DataModel Get(int id)
@@ -62,6 +68,8 @@ namespace TestWebApi.Repositories
 
             _data.RemoveAt(index);
             _data.Add(item);
+
+            _data = _data.OrderBy(x => x.Id).ToList();
 
             return true;
         }

@@ -13,12 +13,6 @@ namespace TestWebApi.Controllers
     [Route("api/[controller]")]
     public class DataController : Controller
     {
-        private List<DataModel> Values = new List<DataModel>()
-        {
-            new DataModel { Id = 1, Name = "Value0", Value = 0},
-            new DataModel { Id = 2, Name = "Value1", Value = 1},
-        };
-
         public IDataRepository _dataRepo { get; set; }
 
         public DataController(IDataRepository dataRepo)
@@ -35,7 +29,7 @@ namespace TestWebApi.Controllers
 
          public IEnumerable<DataModel> GetAllData()
         {
-            return Values;
+            return _dataRepo.GetAll();
         }
 
         // GET api/values/5
