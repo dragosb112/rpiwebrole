@@ -19,9 +19,9 @@
                     
                     button.appendChild(text);
                     button.setAttribute('type', 'button');
-                    //button.setAttribute('onclick', function(){turnOn_item(item, 1);});
+                    //button.setAttribute('onclick', function(){turnOn_item(item, 0);});
                     button.onclick = function(){
-                        turnOn_item(item, 1);
+                        turnOn_item(item, 0);
                     };
 
                     label = document.getElementById('label_' + item.id);
@@ -34,7 +34,7 @@
                     button2.setAttribute('type', 'button');
                     //button.setAttribute('onclick', function(){turnOn_item(item, 1);});
                     button2.onclick = function(){
-                        turnOn_item(item, 0);
+                        turnOn_item(item, 1);
                     };
 
                     //label = document.getElementById('label_' + item.id);
@@ -44,7 +44,7 @@
     });
 
     function formatItem(item){
-        return '[' + item.id + '] ' + item.name + ': ' + item.value;
+        return '[' + item.id + '] ' + item.name + ': ' + item.value + '--' + item.gpioId;
     }
 
     function turnOn_item(item, value){
@@ -52,6 +52,7 @@
             DataModel.id = item.id;
             DataModel.name = item.name;
             DataModel.value = value;
+            DataModel.gpioId = item.gpioId;
 
             $.ajax({
                         url: 'api/data/' + DataModel.id,
