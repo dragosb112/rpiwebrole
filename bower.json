@@ -1,0 +1,32 @@
+{
+  "name": "TestWebApi",
+  "homepage": "https://github.com/dragosb112/rpiwebrole",
+  "authors": [
+    "dragos <dragos@skeng.com>"
+  ],
+  "description": "javascriptPackages",
+  "main": "javascriptPackages",
+  "moduleType": [
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "javascript",
+    "stuff"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "~3.1.1",
+    "jquery": "~3.1.1",
+    "angular": "~1.5.8"
+  }
+}
