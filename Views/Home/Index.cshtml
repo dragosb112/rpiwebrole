@@ -1,18 +1,28 @@
+
 @{
     ViewData["Title"] = "RPi WebRole";
 
 }
 
+<html lang = "en">
 
 <script src="/scripts/jquery-3.1.1.js" ></script>
-<script src="/scripts/angular.js"></script>
 <script src="/scripts/angular.min.js"></script>
 <script src="/app/worker.js"></script>
 <script src="/app/controllers/mainCtrl.js"></script>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+   <head>
+      <meta charset = "utf-8">
+      <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      
+      <title>@ViewData["Title"]</title>
+      
+      <!-- Bootstrap -->
+      <link href = "/css/bootstrap.min.css" rel = "stylesheet">
+      <link href = "/css/rpiapp.css" rel = "stylesheet">
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src = "/js/bootstrap.min.js"></script>
 <script>
     var uri = 'api/data';
 
@@ -86,31 +96,30 @@
     
 </script>
 
-<style type="text/css">
-.bgimg {
-    background-image: url('/images/background.jpg');
-    font-family: "Robson Celtic";
-}
-</style>
-
-<div ng-app="myApp">
-    <div class="bgimg" ng-controller="mainCtrl">
-
-<font color="white">
-
-<div>
-    <h2>@ViewData["Title"]</h2>
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/-->
+      <!--[if lt IE 9]>
+      <script src = "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src = "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      
+   </head>
+   
+   <body>
+<div class="jumbotron text-center">
+  <h2>RPi WebAPI: LED Edition</h2>
+  <p>Death is awaiting.</p> 
 </div>
-
-<div id='main'>
-    <h3>Data</h3>
-    <ul id="data"/>
-</div>
-        {{message}}
-
-
-</font>        <!--<img src="/images/background.jpg" title="death is awaiting">-->
+<div class="container">
+    <div class="col-sm-4" id="main">
+         <h3>Data</h3>
+        <ul id="data"/>
     </div>
 </div>
-  
+           
+      
+   </body>
 </html>
+
+
