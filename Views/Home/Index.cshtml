@@ -106,19 +106,22 @@
       
    </head>
    
-   <body>
+   <body ng-app="myApp">
 <div class="jumbotron text-center">
   <h2>RPi WebAPI: LED Edition</h2>
   <p>Death is awaiting.</p> 
 </div>
-<div class="container">
+<div class="container" ng-controller="mainCtrl">
     <div class="col-sm-4" id="main">
          <h3>Data</h3>
         <ul id="data"/>
+        {{message}}
     </div>
-</div>
-           
-      
+</div> 
+    <audio autoplay="autoplay">
+    <source src="/sounds/creamymiddle.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>        
    </body>
 </html>
 
